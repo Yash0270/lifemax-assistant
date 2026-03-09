@@ -1,8 +1,8 @@
 /*
- * Design: Tactical Command Center — Military-Futurism
- * Footer: Minimal, dark, with monospaced accents and status indicators
+ * Design: Nature Tech — Biophilic Calm
+ * Footer: Warm cream footer with sage accents, organic feel
  */
-import { Zap } from "lucide-react";
+import { Leaf } from "lucide-react";
 
 const footerLinks = {
   product: [
@@ -36,31 +36,27 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-border bg-dark-base">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+    <footer className="bg-cream border-t border-sand py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 rounded bg-cyan/10 border border-cyan/30 flex items-center justify-center">
-                <Zap className="w-3.5 h-3.5 text-cyan" />
+            <div className="flex items-center gap-2.5 mb-4">
+              <div className="w-8 h-8 rounded-xl bg-sage flex items-center justify-center">
+                <Leaf className="w-4 h-4 text-white" />
               </div>
-              <span className="font-display font-bold text-base tracking-tight text-foreground">
-                LIFE<span className="text-cyan">MAXX</span>
+              <span className="font-display text-lg font-bold text-foreground">
+                Life<span className="text-sage">Maxx</span>
               </span>
-            </a>
-            <p className="text-xs text-muted-foreground leading-relaxed mb-4 max-w-xs">
-              Your personal optimization engine. AI + Human hybrid assistant for health, fitness, wealth, and life.
-            </p>
-            <div className="flex items-center gap-2 text-xs font-mono text-muted-foreground">
-              <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse" />
-              <span>SYSTEM OPERATIONAL</span>
             </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Your personal optimization engine. AI + Human hybrid assistant for health, fitness, wealth, and beyond.
+            </p>
           </div>
 
           {/* Product */}
           <div>
-            <h4 className="font-mono text-xs text-cyan tracking-widest uppercase mb-4">
+            <h4 className="font-display font-semibold text-sm text-foreground mb-4">
               Product
             </h4>
             <ul className="space-y-2.5">
@@ -68,7 +64,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <button
                     onClick={() => handleClick(link.href)}
-                    className="text-sm text-muted-foreground hover:text-cyan transition-colors"
+                    className="text-sm text-muted-foreground hover:text-sage transition-colors"
                   >
                     {link.label}
                   </button>
@@ -79,7 +75,7 @@ export default function Footer() {
 
           {/* Domains */}
           <div>
-            <h4 className="font-mono text-xs text-lime tracking-widest uppercase mb-4">
+            <h4 className="font-display font-semibold text-sm text-foreground mb-4">
               Domains
             </h4>
             <ul className="space-y-2.5">
@@ -87,7 +83,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <button
                     onClick={() => handleClick(link.href)}
-                    className="text-sm text-muted-foreground hover:text-lime transition-colors"
+                    className="text-sm text-muted-foreground hover:text-sage transition-colors"
                   >
                     {link.label}
                   </button>
@@ -98,7 +94,7 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="font-mono text-xs text-muted-foreground tracking-widest uppercase mb-4">
+            <h4 className="font-display font-semibold text-sm text-foreground mb-4">
               Company
             </h4>
             <ul className="space-y-2.5">
@@ -117,13 +113,21 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs font-mono text-muted-foreground">
+        <div className="mt-12 pt-8 border-t border-sand flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} LifeMaxx. All rights reserved.
           </p>
-          <p className="text-xs font-mono text-muted-foreground/50">
-            v1.0.0 // BUILD 2026.03
-          </p>
+          <div className="flex items-center gap-6">
+            <a href="#" className="text-xs text-muted-foreground hover:text-sage transition-colors">
+              Privacy
+            </a>
+            <a href="#" className="text-xs text-muted-foreground hover:text-sage transition-colors">
+              Terms
+            </a>
+            <a href="#" className="text-xs text-muted-foreground hover:text-sage transition-colors">
+              Cookies
+            </a>
+          </div>
         </div>
       </div>
     </footer>

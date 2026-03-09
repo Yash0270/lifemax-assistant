@@ -1,170 +1,150 @@
 /*
- * Design: Tactical Command Center — Military-Futurism
- * Hero: Asymmetric layout with hero bg, bold typography, chat mockup image
- * Typewriter effect on headline, staggered entrance animations
+ * Design: Nature Tech — Biophilic Calm
+ * Hero: Warm, inviting split layout with botanical background, chat mockup, organic shapes
+ * Dark text on light background — Lora headings, DM Sans body
  */
 import { motion } from "framer-motion";
-import { ArrowRight, MessageSquare, Bot, User } from "lucide-react";
+import { ArrowRight, MessageCircle, Sparkles, User } from "lucide-react";
 
-const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663318051643/mRfVYPJDrxJkGQvAoTBXce/hero-bg-4SnUhVMqThkipnkFkWgsSb.webp";
-const CHAT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663318051643/mRfVYPJDrxJkGQvAoTBXce/chat-interface-bsCxcXsXCb8JA84s5MSZ5b.webp";
-
-const stats = [
-  { value: "10K+", label: "Tasks Completed" },
-  { value: "<2min", label: "Avg Response" },
-  { value: "24/7", label: "Always Online" },
-];
+const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663318051643/mRfVYPJDrxJkGQvAoTBXce/nature-hero-74s86PWhPKvQR9A7y5LmV2.webp";
+const CHAT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663318051643/mRfVYPJDrxJkGQvAoTBXce/nature-chat-cEAxbWRsFqbCQPeLYiqZ46.webp";
 
 export default function HeroSection() {
-  const handleGetStarted = () => {
-    const el = document.querySelector("#pricing");
+  const scrollTo = (href: string) => {
+    const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* Background */}
+      {/* Soft botanical background */}
       <div className="absolute inset-0">
         <img
           src={HERO_BG}
           alt=""
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-base/60 via-dark-base/80 to-dark-base" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.97_0.01_90/0.6)] via-[oklch(0.97_0.01_90/0.8)] to-[oklch(0.97_0.01_90)]" />
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 lg:pt-36 pb-20">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Left: Text */}
-          <div className="lg:col-span-7">
-            {/* Status Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded border border-cyan/20 bg-cyan/5 mb-8"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse" />
-              <span className="text-xs font-mono text-cyan tracking-widest uppercase">
-                System Active — Accepting New Users
-              </span>
-            </motion.div>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 lg:pt-36 pb-20">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left: Copy */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            {/* Status pill */}
+            <div className="inline-flex items-center gap-2 sage-badge mb-8">
+              <span className="w-2 h-2 rounded-full bg-sage animate-pulse" />
+              <span className="font-body text-xs tracking-wide">Accepting new members</span>
+            </div>
 
-            {/* Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-display font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-[1.05] tracking-tight mb-6"
-            >
-              <span className="text-foreground">Just Message.</span>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-[1.1] mb-6">
+              Just Message.{" "}
               <br />
-              <span className="text-foreground">We </span>
-              <span className="text-cyan text-glow-cyan">Optimize</span>
-              <span className="text-foreground"> Your Life.</span>
-            </motion.h1>
+              <span className="text-sage">We Optimize</span>{" "}
+              <br />
+              Your Life.
+            </h1>
 
-            {/* Subheadline */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg sm:text-xl text-muted-foreground max-w-xl mb-8 leading-relaxed"
-            >
-              AI handles what it can. A real human handles the rest. From booking trainers to researching supplements — your personal optimization engine is one message away.
-            </motion.p>
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-lg mb-8">
+              AI handles what it can. A real human handles the rest. From booking trainers
+              to researching supplements — your personal optimization engine is one message away.
+            </p>
 
-            {/* How it works mini */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap items-center gap-3 mb-10"
-            >
-              <div className="flex items-center gap-2 px-3 py-2 rounded bg-dark-elevated/60 border border-border">
-                <MessageSquare className="w-4 h-4 text-cyan" />
-                <span className="text-sm font-mono text-foreground">You message</span>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground hidden sm:block" />
-              <div className="flex items-center gap-2 px-3 py-2 rounded bg-dark-elevated/60 border border-border">
-                <Bot className="w-4 h-4 text-lime" />
-                <span className="text-sm font-mono text-foreground">AI processes</span>
-              </div>
-              <ArrowRight className="w-4 h-4 text-muted-foreground hidden sm:block" />
-              <div className="flex items-center gap-2 px-3 py-2 rounded bg-dark-elevated/60 border border-border">
-                <User className="w-4 h-4 text-cyan" />
-                <span className="text-sm font-mono text-foreground">Human delivers</span>
-              </div>
-            </motion.div>
-
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-4"
-            >
-              <button
-                onClick={handleGetStarted}
-                className="px-8 py-4 bg-cyan text-dark-base font-display font-bold text-base rounded tracking-wide hover:bg-cyan-glow transition-all duration-300 glow-cyan flex items-center gap-2"
-              >
-                START OPTIMIZING
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() => {
-                  const el = document.querySelector("#how-it-works");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="px-8 py-4 border border-cyan/30 text-cyan font-display font-semibold text-base rounded tracking-wide hover:bg-cyan/5 transition-all duration-300"
-              >
-                SEE HOW IT WORKS
-              </button>
-            </motion.div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex gap-8 mt-12 pt-8 border-t border-border"
-            >
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="font-mono font-semibold text-2xl text-cyan">
-                    {stat.value}
+            {/* Flow indicator */}
+            <div className="flex flex-wrap items-center gap-3 mb-10">
+              {[
+                { icon: MessageCircle, label: "You message" },
+                { icon: Sparkles, label: "AI processes" },
+                { icon: User, label: "Human delivers" },
+              ].map((step, i) => (
+                <div key={step.label} className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 px-4 py-2 bg-white rounded-full border border-sand shadow-sm">
+                    <step.icon className="w-4 h-4 text-sage" />
+                    <span className="text-sm font-medium text-foreground">{step.label}</span>
                   </div>
-                  <div className="text-xs font-mono text-muted-foreground uppercase tracking-wider mt-1">
-                    {stat.label}
-                  </div>
+                  {i < 2 && (
+                    <ArrowRight className="w-4 h-4 text-muted-foreground/40" />
+                  )}
                 </div>
               ))}
-            </motion.div>
-          </div>
+            </div>
 
-          {/* Right: Chat Interface Image */}
+            {/* CTAs */}
+            <div className="flex flex-wrap gap-4">
+              <button
+                onClick={() => scrollTo("#pricing")}
+                className="group px-8 py-3.5 bg-sage text-white font-medium rounded-full hover:bg-[oklch(0.45_0.08_145)] transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2"
+              >
+                Start Optimizing
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+              <button
+                onClick={() => scrollTo("#how-it-works")}
+                className="px-8 py-3.5 bg-white text-foreground font-medium rounded-full border border-sand hover:border-sage/30 hover:bg-sand-light transition-all duration-300"
+              >
+                See How It Works
+              </button>
+            </div>
+          </motion.div>
+
+          {/* Right: Chat mockup image */}
           <motion.div
-            initial={{ opacity: 0, x: 60, rotateY: -5 }}
-            animate={{ opacity: 1, x: 0, rotateY: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="lg:col-span-5 relative"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="relative flex justify-center lg:justify-end"
           >
-            <div className="relative">
-              {/* Glow behind */}
-              <div className="absolute -inset-4 bg-cyan/5 rounded-2xl blur-3xl" />
+            <div className="relative w-[300px] sm:w-[340px]">
+              {/* Decorative organic blob behind */}
+              <div className="absolute -top-8 -left-8 w-64 h-64 bg-[oklch(0.65_0.06_145/0.1)] rounded-[60%_40%_50%_50%/50%_60%_40%_50%] blur-2xl" />
+              <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-[oklch(0.90_0.06_45/0.4)] rounded-[40%_60%_50%_50%/60%_40%_50%_50%] blur-2xl" />
+
               <img
                 src={CHAT_IMG}
-                alt="LifeMaxx chat interface showing AI assistant finding personal trainers"
-                className="relative w-full max-w-md mx-auto lg:max-w-none rounded-xl border border-cyan/15 glow-cyan-sm"
+                alt="LifeMaxx chat interface showing a personal assistant conversation"
+                className="relative rounded-3xl shadow-2xl shadow-[oklch(0.55_0.08_145/0.1)] border border-sand"
               />
             </div>
           </motion.div>
         </div>
+
+        {/* Stats bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6"
+        >
+          {[
+            { value: "10,000+", label: "Tasks completed" },
+            { value: "< 2 min", label: "AI response time" },
+            { value: "98%", label: "Satisfaction rate" },
+            { value: "24/7", label: "Always available" },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className="text-center p-5 bg-white/60 backdrop-blur-sm rounded-2xl border border-[oklch(0.88_0.03_75/0.6)]"
+            >
+              <div className="font-display text-2xl font-bold text-foreground mb-1">
+                {stat.value}
+              </div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            </div>
+          ))}
+        </motion.div>
       </div>
 
-      {/* Bottom diagonal cut */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-dark-base" style={{ clipPath: "polygon(0 100%, 100% 40%, 100% 100%)" }} />
+      {/* Soft wave divider */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+          <path d="M0 40C240 70 480 80 720 60C960 40 1200 20 1440 40V80H0V40Z" fill="oklch(0.97 0.01 90)" />
+        </svg>
+      </div>
     </section>
   );
 }

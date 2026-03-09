@@ -1,29 +1,28 @@
 /*
- * Design: Tactical Command Center — Military-Futurism
- * How It Works: 3-step process with numbered cards, diagonal accents
- * Staggered scroll animations, monospaced step numbers
+ * Design: Nature Tech — Biophilic Calm
+ * How It Works: 3 organic rounded cards with sage/terracotta accents, warm shadows
  */
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { MessageSquare, Cpu, CheckCircle2 } from "lucide-react";
+import { MessageCircle, Cpu, CheckCircle2 } from "lucide-react";
 
 const steps = [
   {
-    num: "01",
-    icon: MessageSquare,
+    step: "01",
+    icon: MessageCircle,
     title: "Message Your Request",
     description:
       "Just tell us what you need — in plain language. Book a trainer, research the best nootropics, plan a meal prep schedule, negotiate a gym membership. Anything.",
     examples: [
-      "Find me a personal trainer near downtown",
+      "Find a personal trainer near downtown",
       "Research the top 5 sleep supplements",
       "Book a table at the best steakhouse Friday",
     ],
-    accent: "cyan",
+    color: "bg-sage-light",
+    iconColor: "text-sage",
   },
   {
-    num: "02",
+    step: "02",
     icon: Cpu,
     title: "AI + Human Processing",
     description:
@@ -33,10 +32,11 @@ const steps = [
       "Human: Calls and negotiates your gym rate",
       "AI + Human: Plans your full weekly routine",
     ],
-    accent: "lime",
+    color: "bg-terracotta-light",
+    iconColor: "text-terracotta",
   },
   {
-    num: "03",
+    step: "03",
     icon: CheckCircle2,
     title: "Results Delivered",
     description:
@@ -46,120 +46,78 @@ const steps = [
       "Top pick: Magnesium Glycinate — here's why",
       "Reservation confirmed: Cut Prime, 8PM Friday",
     ],
-    accent: "cyan",
+    color: "bg-[oklch(0.92_0.03_160)]",
+    iconColor: "text-[oklch(0.55_0.08_160)]",
   },
 ];
 
-function StepCard({ step, index }: { step: typeof steps[0]; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.15 }}
-      className="relative group"
-    >
-      <div className="glass-card border-glow rounded-lg p-8 h-full relative overflow-hidden">
-        {/* Step number background */}
-        <div className="absolute -top-4 -right-4 font-display font-bold text-[120px] leading-none text-foreground/[0.03] select-none">
-          {step.num}
-        </div>
-
-        {/* Icon + Number */}
-        <div className="flex items-center gap-4 mb-6">
-          <div
-            className={`w-12 h-12 rounded flex items-center justify-center border ${
-              step.accent === "cyan"
-                ? "bg-cyan/10 border-cyan/30"
-                : "bg-lime/10 border-lime/30"
-            }`}
-          >
-            <step.icon
-              className={`w-5 h-5 ${
-                step.accent === "cyan" ? "text-cyan" : "text-lime"
-              }`}
-            />
-          </div>
-          <span
-            className={`font-mono font-semibold text-sm tracking-widest ${
-              step.accent === "cyan" ? "text-cyan" : "text-lime"
-            }`}
-          >
-            STEP {step.num}
-          </span>
-        </div>
-
-        {/* Title */}
-        <h3 className="font-display font-bold text-xl mb-3 text-foreground">
-          {step.title}
-        </h3>
-
-        {/* Description */}
-        <p className="text-muted-foreground text-sm leading-relaxed mb-6">
-          {step.description}
-        </p>
-
-        {/* Examples */}
-        <div className="space-y-2">
-          {step.examples.map((ex, i) => (
-            <div
-              key={i}
-              className="flex items-start gap-2 text-xs font-mono text-muted-foreground"
-            >
-              <span
-                className={`mt-0.5 ${
-                  step.accent === "cyan" ? "text-cyan/60" : "text-lime/60"
-                }`}
-              >
-                &gt;
-              </span>
-              <span>{ex}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
 export default function HowItWorks() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.05 });
 
   return (
-    <section id="how-it-works" className="relative py-24 lg:py-32">
+    <section ref={ref} id="how-it-works" className="py-24 lg:py-32 bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Header */}
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="text-center mb-16"
         >
-          <span className="font-mono text-xs text-cyan tracking-widest uppercase mb-3 block">
-            // Protocol Overview
-          </span>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground mb-4">
-            How It <span className="text-cyan text-glow-cyan">Works</span>
+          <span className="sage-badge inline-block mb-4">How It Works</span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            Three Simple Steps to a{" "}
+            <span className="text-sage">Better Life</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl">
-            Three steps between you and a fully optimized life. No apps to learn, no dashboards to manage. Just message us.
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            No apps to learn, no dashboards to manage. Just message us and we handle everything.
           </p>
         </motion.div>
 
-        {/* Steps Grid */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        {/* Steps */}
+        <div className="grid md:grid-cols-3 gap-8">
           {steps.map((step, i) => (
-            <StepCard key={step.num} step={step} index={i} />
+            <motion.div
+              key={step.step}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
+              className="nature-card p-8 relative overflow-hidden group"
+            >
+              {/* Step number watermark */}
+              <span className="absolute top-4 right-6 font-display text-7xl font-bold text-[oklch(0.90_0.02_75/0.5)] select-none">
+                {step.step}
+              </span>
+
+              {/* Icon */}
+              <div className={`w-14 h-14 ${step.color} rounded-2xl flex items-center justify-center mb-6`}>
+                <step.icon className={`w-6 h-6 ${step.iconColor}`} />
+              </div>
+
+              {/* Content */}
+              <h3 className="font-display text-xl font-semibold text-foreground mb-3">
+                {step.title}
+              </h3>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-6">
+                {step.description}
+              </p>
+
+              {/* Examples */}
+              <div className="space-y-2">
+                {step.examples.map((ex) => (
+                  <div
+                    key={ex}
+                    className="flex items-start gap-2 text-sm text-muted-foreground"
+                  >
+                    <span className="text-sage mt-0.5 shrink-0">&#8250;</span>
+                    <span>{ex}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
-
-        {/* Connecting line (desktop) */}
-        <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 w-[60%] h-px bg-gradient-to-r from-transparent via-cyan/20 to-transparent" />
       </div>
     </section>
   );

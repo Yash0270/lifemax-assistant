@@ -1,142 +1,99 @@
 /*
- * Design: Tactical Command Center — Military-Futurism
- * Comparison: Table comparing pure AI, pure human, and LifeMaxx hybrid
- * Glass card with glow accents
+ * Design: Nature Tech — Biophilic Calm
+ * Comparison: Clean warm table showing AI vs Human vs LifeMaxx
  */
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Check, X, Minus } from "lucide-react";
 
-const comparisons = [
-  {
-    feature: "Instant Research",
-    ai: true,
-    human: false,
-    lifemaxx: true,
-  },
-  {
-    feature: "Real-World Actions",
-    ai: false,
-    human: true,
-    lifemaxx: true,
-  },
-  {
-    feature: "Phone Calls & Negotiations",
-    ai: false,
-    human: true,
-    lifemaxx: true,
-  },
-  {
-    feature: "24/7 Availability",
-    ai: true,
-    human: false,
-    lifemaxx: true,
-  },
-  {
-    feature: "Personalized Recommendations",
-    ai: "partial",
-    human: true,
-    lifemaxx: true,
-  },
-  {
-    feature: "Booking & Purchasing",
-    ai: false,
-    human: true,
-    lifemaxx: true,
-  },
-  {
-    feature: "Data Analysis & Comparison",
-    ai: true,
-    human: "partial",
-    lifemaxx: true,
-  },
-  {
-    feature: "Emotional Intelligence",
-    ai: false,
-    human: true,
-    lifemaxx: true,
-  },
+const rows = [
+  { feature: "Instant Research", ai: true, human: false, lifemaxx: true },
+  { feature: "Real-World Actions", ai: false, human: true, lifemaxx: true },
+  { feature: "Phone Calls & Negotiations", ai: false, human: true, lifemaxx: true },
+  { feature: "24/7 Availability", ai: true, human: false, lifemaxx: true },
+  { feature: "Personalized Recommendations", ai: "partial", human: true, lifemaxx: true },
+  { feature: "Booking & Purchasing", ai: false, human: true, lifemaxx: true },
+  { feature: "Data Analysis & Comparison", ai: true, human: "partial", lifemaxx: true },
+  { feature: "Emotional Intelligence", ai: false, human: true, lifemaxx: true },
 ];
 
-function StatusIcon({ value }: { value: boolean | string }) {
-  if (value === true) return <Check className="w-4 h-4 text-lime" />;
-  if (value === false) return <X className="w-4 h-4 text-destructive/60" />;
-  return <Minus className="w-4 h-4 text-muted-foreground" />;
+function CellIcon({ value }: { value: boolean | string }) {
+  if (value === true) return <Check className="w-5 h-5 text-sage mx-auto" />;
+  if (value === false) return <X className="w-5 h-5 text-[oklch(0.65_0.10_25)] mx-auto" />;
+  return <Minus className="w-5 h-5 text-muted-foreground/50 mx-auto" />;
 }
 
 export default function ComparisonSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, amount: 0.05 });
 
   return (
-    <section className="relative py-24 lg:py-32">
-      <div className="absolute inset-0 bg-dark-surface/30" />
-
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={ref} className="py-24 lg:py-32 bg-sand-light">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          ref={ref}
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
-          <span className="font-mono text-xs text-cyan tracking-widest uppercase mb-3 block">
-            // System Comparison
-          </span>
-          <h2 className="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-foreground mb-4">
-            Why <span className="text-cyan text-glow-cyan">Hybrid</span> Wins
+          <span className="sage-badge inline-block mb-4">Why Choose Us</span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            Why <span className="text-terracotta italic">Hybrid</span> Wins
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
             Pure AI is fast but can't act in the real world. Pure human is capable but slow. LifeMaxx gives you both.
           </p>
         </motion.div>
 
-        {/* Comparison Table */}
+        {/* Table */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="glass-card border-glow rounded-lg overflow-hidden"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="nature-card overflow-hidden"
         >
-          {/* Table Header */}
-          <div className="grid grid-cols-4 gap-4 p-4 sm:p-6 border-b border-border bg-dark-elevated/30">
-            <div className="text-xs font-mono text-muted-foreground uppercase tracking-wider">
-              Capability
-            </div>
-            <div className="text-center text-xs font-mono text-muted-foreground uppercase tracking-wider">
-              AI Only
-            </div>
-            <div className="text-center text-xs font-mono text-muted-foreground uppercase tracking-wider">
-              Human Only
-            </div>
-            <div className="text-center">
-              <span className="text-xs font-mono text-cyan uppercase tracking-wider font-semibold">
-                LifeMaxx
-              </span>
-            </div>
-          </div>
-
-          {/* Rows */}
-          {comparisons.map((row, i) => (
-            <div
-              key={row.feature}
-              className={`grid grid-cols-4 gap-4 p-4 sm:px-6 items-center ${
-                i < comparisons.length - 1 ? "border-b border-border/50" : ""
-              } hover:bg-dark-elevated/20 transition-colors`}
-            >
-              <div className="text-sm text-foreground">{row.feature}</div>
-              <div className="flex justify-center">
-                <StatusIcon value={row.ai} />
-              </div>
-              <div className="flex justify-center">
-                <StatusIcon value={row.human} />
-              </div>
-              <div className="flex justify-center">
-                <StatusIcon value={row.lifemaxx} />
-              </div>
-            </div>
-          ))}
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-sand">
+                <th className="text-left py-4 px-6 text-sm font-medium text-muted-foreground">
+                  Capability
+                </th>
+                <th className="text-center py-4 px-4 text-sm font-medium text-muted-foreground">
+                  AI Only
+                </th>
+                <th className="text-center py-4 px-4 text-sm font-medium text-muted-foreground">
+                  Human Only
+                </th>
+                <th className="text-center py-4 px-4">
+                  <span className="text-sm font-bold text-sage">LifeMaxx</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, i) => (
+                <tr
+                  key={row.feature}
+                  className={`border-b border-[oklch(0.90_0.02_75/0.5)] last:border-0 ${
+                    i % 2 === 0 ? "bg-[oklch(0.97_0.01_90/0.5)]" : ""
+                  }`}
+                >
+                  <td className="py-4 px-6 text-sm font-medium text-foreground">
+                    {row.feature}
+                  </td>
+                  <td className="py-4 px-4">
+                    <CellIcon value={row.ai} />
+                  </td>
+                  <td className="py-4 px-4">
+                    <CellIcon value={row.human} />
+                  </td>
+                  <td className="py-4 px-4 bg-[oklch(0.92_0.03_145/0.3)]">
+                    <CellIcon value={row.lifemaxx} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </motion.div>
       </div>
     </section>
